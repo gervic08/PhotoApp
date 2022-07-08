@@ -36,6 +36,26 @@ Rails.application.configure do
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for NGINX
+  config.action_mailer.delivery_method = :smtp, host = 'photoapp.herokuapp.com'
+
+  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
+
+  ActionMailer::Base.smtp_settings = {
+
+    :address => 'smtp.gmail.com',
+
+    :port => '587',
+
+    :authentication => :plain,
+
+    :user_name => ENV['GMAIL_USERNAME'],
+
+    :password => ENV['GMAIL_PASSWORD'],
+
+    :domain => 'gmail.com',
+
+    :enable_starttls_auto => true
+  }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
