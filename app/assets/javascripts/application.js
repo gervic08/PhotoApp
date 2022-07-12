@@ -9,4 +9,4 @@
 //= require twitter/bootstrap
 //= require_tree .
 
-import "@fortawesome/fontawesome-free/css/all.css";
+
