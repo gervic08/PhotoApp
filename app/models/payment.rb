@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Payment < ApplicationRecord
-  attr_accessor :card_number, :card_cvv, :card_expires_month, :card_expires_year
+  attr_accessor :card_number, :card_cvc, :card_expires_month, :card_expires_year
 
   belongs_to :user
 
@@ -15,7 +15,7 @@ class Payment < ApplicationRecord
 
   def payment_process
     customer = Stripe::Customer.create(email: email, card: token)
-
+    #byebug
     Stripe::Charge.create(customer: customer.id, amount: 1000, description: "Premium", currency: "usd")
   end
 end
